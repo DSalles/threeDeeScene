@@ -150,6 +150,18 @@ namespace ThreeDeeScene
                                                         playerImage[playerImageIndex + 2] = 0x00;
                                                     playerImage[playerImageIndex + 3] = 0xFF;                                          //Alpha
                                                 }
+                                                else
+                                                {
+                                                    colorPoint = this._KinectDevice.MapDepthToColorImagePoint(depthFrame.Format, depthX, depthY, this._DepthPixelData[depthPixelIndex], colorFrame.Format);
+                                                    colorPixelIndex = (colorPoint.X * colorFrame.BytesPerPixel) + (colorPoint.Y * colorStride);
+                                                    //red  
+                                                    playerImage[playerImageIndex] = 0xaa;
+                                                    //green
+                                                    playerImage[playerImageIndex + 1] = 0xaa;
+                                                    //blue
+                                                    playerImage[playerImageIndex + 2] = 0xFF;
+                                                    playerImage[playerImageIndex + 3] = 0x80;     // half alpha
+                                                }
                                             }
                                         }
 
